@@ -1,18 +1,32 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class BinaryConverter 
+public class BinaryConverter implements ActionListener 
 {
-	public static void main(String[] args) 
+	JTextField input = new JTextField(20);
+	JLabel w = new JLabel();
+	
+	void SetUp()
 	{
 		JFrame c = new JFrame();
 		JPanel o = new JPanel();
-		JLabel w = new JLabel();
+		JButton enter = new JButton();
+		
+		enter.setText("Convert");
 		
 		c.add(o);
+		o.add(input);
+		o.add(enter);
 		o.add(w);
+		
+		enter.addActionListener(this);
 		
 		c.setTitle("Binary Converter");
 		c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +34,11 @@ public class BinaryConverter
 		
 		c.setVisible(true);
 		
+	}
+	
+	public static void main(String[] args) 
+	{
+		new BinaryConverter().SetUp();
 	}
 	
 	String convert(String input) 
@@ -46,6 +65,16 @@ public class BinaryConverter
              return "-";
         }
    }
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		// TODO Auto-generated method stub
+		String binary = input.getText();
+		String Letter  = convert(binary);
+		
+		w.setText(Letter);
+	}
 
 }
 
